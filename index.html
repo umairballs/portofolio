@@ -326,6 +326,34 @@
             document.getElementById('contact-trigger').style.opacity = "1";
         };
         window.onresize = resize;
+        async function loadMediumLinks() {
+  const container = document.querySelector('.writeup-grid'); // Adjust selector to match your HTML class
+  const response = await fetch('https://api.github.com/repos/umairballs/portofolio/contents/writeups');
+  const files = await response.json();
+
+  for (const file of files) {
+    if (file.name.endsWith('.md')) {
+      const raw = await fetch(file.download_url);
+      const content = await raw.text();
+      
+      // Simple parser to get title and URL from the file
+      const title = content.match(/title: (.*)/)?.[1];
+      const url = content.match(/medium_url: (.*)/)?.[1];
+      const desc = content.match(/description: (.*)/)?.[1];
+
+      // This creates the exact box seen in your screenshot
+      const box = `
+        <div class="writeup-box" onclick="window.open('${url}', '_blank')">
+          <div class="run-tag">[ RUN: ${title.toUpperCase()} ]</div>
+          <p>${desc}</p>
+        </div>
+      `;
+      container.innerHTML += box;
+    }
+  }
+}
+loadMediumLinks();
     </script>
 </body>
 </html>
+
