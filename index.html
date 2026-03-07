@@ -327,7 +327,7 @@
         };
         window.onresize = resize;
         async function loadMediumLinks() {
-  const container = document.querySelector('.writeup-grid'); // Adjust selector to match your HTML class
+  const container = document.querySelector('#writeups .grid-layout');// Adjust selector to match your HTML class
   const response = await fetch('https://api.github.com/repos/umairballs/portofolio/contents/writeups');
   const files = await response.json();
 
@@ -356,4 +356,5 @@ loadMediumLinks();
     </script>
 </body>
 </html>
+
 
