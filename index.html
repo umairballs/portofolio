@@ -347,13 +347,12 @@
       const url = content.match(/medium_url: (.*)/)?.[1];
       const desc = content.match(/description: (.*)/)?.[1];
 
-      // This creates the exact box seen in your screenshot
-    // This creates the exact same box as your hardcoded ones
+    // This creates the exact same terminal box style as your original ones
         const box = `
-            <a href="${url}" target="_blank" class="writeup-btn">
+            <div class="writeup-btn" onclick="window.open('${url}', '_blank')">
                 <div class="run-tag">[ RUN: ${title.toUpperCase()} ]</div>
-                <p>${desc}</p>
-            </a>
+                <div class="writeup-text">${desc}</div>
+            </div>
         `;
       container.innerHTML += box;
     }
@@ -374,6 +373,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
