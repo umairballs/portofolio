@@ -347,11 +347,13 @@
       const url = content.match(/medium_url: (.*)/)?.[1];
       const desc = content.match(/description: (.*)/)?.[1];
 
-// This builds the box using your exact original CSS classes
+// This creates a 100% identical clone of your manual boxes
         const box = `
             <div class="writeup-btn" onclick="window.open('${url}', '_blank')">
-                <div class="run-tag">[ RUN: ${title.toUpperCase()} ]</div>
-                <strong>${desc}</strong>
+                <span class="run-tag" style="color: rgba(136, 153, 166, 0.6); font-weight: bold; font-size: 0.8em; letter-spacing: 2px;">
+                    [ RUN: ${title.toUpperCase()} ]
+                </span>
+                <strong style="display: block; margin-top: 10px; color: #fff;">${desc}</strong>
             </div>
         `;
       container.innerHTML += box;
@@ -373,6 +375,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
