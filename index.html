@@ -350,13 +350,17 @@
 // Removes any quotes from the title and forces exact matching styles
         const cleanTitle = title.replace(/['"]+/g, '').toUpperCase();
 
+   // This removes quotes and uses the EXACT same HTML structure as your manual boxes
+        const cleanTitle = title.replace(/['"]+/g, '').toUpperCase();
+        const cleanDesc = desc.replace(/['"]+/g, '');
+
         const box = `
-            <div class="writeup-btn" onclick="window.open('${url}', '_blank')" style="cursor: pointer; min-height: 110px; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
-                <span style="display: block; color: var(--accent); font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 13px; letter-spacing: 2px; opacity: 0.85; margin-bottom: 8px;">
+            <div class="writeup-btn" onclick="window.open('${url}', '_blank')">
+                <span class="run-tag">
                     [ RUN: ${cleanTitle} ]
                 </span>
-                <strong style="display: block; color: #ffffff; font-family: 'Courier New', Courier, monospace; font-size: 17px; font-weight: 800; line-height: 1.3;">
-                    ${desc}
+                <strong class="terminal-desc">
+                    ${cleanDesc}
                 </strong>
             </div>
         `;
@@ -379,6 +383,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
