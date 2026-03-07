@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "writeups"
+    label: "Medium Writeups"
+    folder: "writeups"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Medium URL", name: "medium_url", widget: "string"}
+      - {label: "Short Description", name: "description", widget: "text"}
