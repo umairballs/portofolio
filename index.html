@@ -347,13 +347,13 @@
       const url = content.match(/medium_url: (.*)/)?.[1];
       const desc = content.match(/description: (.*)/)?.[1];
 
-// This creates a 100% identical clone of your manual boxes
+// This ensures the purple color and glow match your theme perfectly
         const box = `
             <div class="writeup-btn" onclick="window.open('${url}', '_blank')">
-                <span class="run-tag" style="color: rgba(136, 153, 166, 0.6); font-weight: bold; font-size: 0.8em; letter-spacing: 2px;">
+                <span style="display: block; color: var(--accent); font-weight: bold; font-size: 0.8em; letter-spacing: 2px; opacity: 0.9; margin-bottom: 8px;">
                     [ RUN: ${title.toUpperCase()} ]
                 </span>
-                <strong style="display: block; margin-top: 10px; color: #fff;">${desc}</strong>
+                <strong style="display: block; color: #ffffff; font-size: 1.1em;">${desc}</strong>
             </div>
         `;
       container.innerHTML += box;
@@ -375,6 +375,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
