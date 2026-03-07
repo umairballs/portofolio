@@ -361,11 +361,11 @@ async function loadMediumLinks() {
             const url = content.match(/medium_url: (.*)/)?.[1] || "#";
             const desc = content.match(/description: (.*)/)?.[1] || "";
 
-            // 1. CLEAN THE TEXT: No quotes, force uppercase title
+            // 1. CLEAN THE TEXT: Remove quotes and force uppercase
             const cleanTitle = title.replace(/['"]+/g, '').toUpperCase();
             const cleanDesc = desc.replace(/['"]+/g, '');
 
-            // 2. THE CLONE: Uses <a> tag and classes to match the top boxes exactly
+            // 2. THE CLONE: Uses your EXACT manual structure for 100% matching
             const box = `
                 <a href="${url}" target="_blank" class="item-card writeup-btn" style="text-decoration: none; display: flex; flex-direction: column; justify-content: center; min-height: 110px;">
                     <span class="tag">[ RUN: ${cleanTitle} ]</span>
@@ -377,7 +377,6 @@ async function loadMediumLinks() {
             container.innerHTML += box;
         }
     }
-}
 }
 loadMediumLinks();
     </script>
@@ -394,6 +393,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
