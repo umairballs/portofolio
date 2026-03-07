@@ -347,13 +347,12 @@
       const url = content.match(/medium_url: (.*)/)?.[1];
       const desc = content.match(/description: (.*)/)?.[1];
 
-// This ensures the bottom text matches your terminal font and size exactly
-        const box = `
-            <div class="writeup-btn" onclick="window.open('${url}', '_blank')" style="cursor: pointer;">
-                <span style="display: block; color: var(--accent); font-weight: bold; font-size: 0.85em; letter-spacing: 1.5px; opacity: 0.85; margin-bottom: 12px;">
+const box = `
+            <div class="writeup-btn" onclick="window.open('${url}', '_blank')" style="cursor: pointer; min-height: 110px; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
+                <span style="color: var(--accent); font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 13px; letter-spacing: 2.5px; opacity: 0.9; margin-bottom: 8px; text-transform: uppercase;">
                     [ RUN: ${title.toUpperCase()} ]
                 </span>
-                <strong style="display: block; color: #ffffff; font-family: 'Courier New', Courier, monospace; font-size: 1.15em; letter-spacing: 0.5px; line-height: 1.4;">
+                <strong style="display: block; color: #ffffff; font-family: 'Courier New', Courier, monospace; font-size: 18px; font-weight: 900; line-height: 1.2; text-shadow: 0 0 5px rgba(255,255,255,0.2);">
                     ${desc}
                 </strong>
             </div>
@@ -377,6 +376,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
