@@ -347,17 +347,17 @@
       const url = content.match(/medium_url: (.*)/)?.[1];
       const desc = content.match(/description: (.*)/)?.[1];
 
-// 1. CLEAN THE TEXT: Kills any double quotes and fixes case
+// 1. CLEAN THE TEXT: No quotes, all uppercase title
         const cleanTitle = title.replace(/['"]+/g, '').toUpperCase();
         const cleanDesc = desc.replace(/['"]+/g, '');
 
-        // 2. THE BOX: Uses your NATIVE CSS classes for 100% matching
+        // 2. THE BOX: Hardcoded styles to match your top boxes exactly
         const box = `
-            <div class="writeup-btn" onclick="window.open('${url}', '_blank')">
-                <span class="run-tag">
+            <div class="writeup-btn" onclick="window.open('${url}', '_blank')" style="cursor: pointer; min-height: 110px; display: flex; flex-direction: column; justify-content: center; padding: 20px; border: 1px solid rgba(163, 113, 247, 0.3); border-radius: 4px; background: rgba(20, 20, 25, 0.6); margin-bottom: 20px;">
+                <span style="display: block; color: #a371f7; font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 13px; letter-spacing: 2px; opacity: 0.85; margin-bottom: 8px; text-transform: uppercase;">
                     [ RUN: ${cleanTitle} ]
                 </span>
-                <strong class="terminal-desc">
+                <strong style="display: block; color: #ffffff; font-family: 'Courier New', Courier, monospace; font-size: 17px; font-weight: 800; line-height: 1.3; margin: 0;">
                     ${cleanDesc}
                 </strong>
             </div>
@@ -381,6 +381,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
