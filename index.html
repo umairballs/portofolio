@@ -347,13 +347,11 @@
       const url = content.match(/medium_url: (.*)/)?.[1];
       const desc = content.match(/description: (.*)/)?.[1];
 
-    // This creates the EXACT match for your terminal boxes
+// This builds the box using your exact original CSS classes
         const box = `
             <div class="writeup-btn" onclick="window.open('${url}', '_blank')">
-                <span style="display: block; margin-bottom: 10px; font-weight: bold; opacity: 0.8;">
-                    [ RUN: ${title.toUpperCase()} ]
-                </span>
-                <strong style="display: block; color: var(--text);">${desc}</strong>
+                <div class="run-tag">[ RUN: ${title.toUpperCase()} ]</div>
+                <strong>${desc}</strong>
             </div>
         `;
       container.innerHTML += box;
@@ -375,6 +373,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
