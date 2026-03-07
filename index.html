@@ -347,13 +347,11 @@
       const url = content.match(/medium_url: (.*)/)?.[1];
       const desc = content.match(/description: (.*)/)?.[1];
 
-// Removes any quotes from the title and forces exact matching styles
-        const cleanTitle = title.replace(/['"]+/g, '').toUpperCase();
-
-   // This removes quotes and uses the EXACT same HTML structure as your manual boxes
+// 1. CLEAN THE TEXT: Removes quotes that were messing up the look
         const cleanTitle = title.replace(/['"]+/g, '').toUpperCase();
         const cleanDesc = desc.replace(/['"]+/g, '');
 
+        // 2. THE BOX: Uses your EXACT manual classes so the font MUST match
         const box = `
             <div class="writeup-btn" onclick="window.open('${url}', '_blank')">
                 <span class="run-tag">
@@ -383,6 +381,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
