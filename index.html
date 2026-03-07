@@ -146,6 +146,11 @@
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-8px);} 60% {transform: translateY(-4px);} }
         .cursor::after { content: '_'; animation: blink 1s infinite; color: var(--accent); }
         @keyframes blink { 50% { opacity: 0; } }
+        .writeup-btn:hover {
+    box-shadow: 0 0 20px var(--accent);
+    border-color: #fff;
+    transform: translateY(-2px);
+}
     </style>
 </head>
 <body>
@@ -343,12 +348,13 @@
       const desc = content.match(/description: (.*)/)?.[1];
 
       // This creates the exact box seen in your screenshot
-      const box = `
-        <div class="writeup-box" onclick="window.open('${url}', '_blank')">
-          <div class="run-tag">[ RUN: ${title.toUpperCase()} ]</div>
-          <p>${desc}</p>
-        </div>
-      `;
+    // This creates the exact same box as your hardcoded ones
+        const box = `
+            <a href="${url}" target="_blank" class="writeup-btn">
+                <div class="run-tag">[ RUN: ${title.toUpperCase()} ]</div>
+                <p>${desc}</p>
+            </a>
+        `;
       container.innerHTML += box;
     }
   }
@@ -368,6 +374,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
