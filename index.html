@@ -347,12 +347,15 @@
       const url = content.match(/medium_url: (.*)/)?.[1];
       const desc = content.match(/description: (.*)/)?.[1];
 
-const box = `
+// Removes any quotes from the title and forces exact matching styles
+        const cleanTitle = title.replace(/['"]+/g, '').toUpperCase();
+
+        const box = `
             <div class="writeup-btn" onclick="window.open('${url}', '_blank')" style="cursor: pointer; min-height: 110px; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
-                <span style="color: var(--accent); font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 13px; letter-spacing: 2.5px; opacity: 0.9; margin-bottom: 8px; text-transform: uppercase;">
-                    [ RUN: ${title.toUpperCase()} ]
+                <span style="display: block; color: var(--accent); font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 13px; letter-spacing: 2px; opacity: 0.85; margin-bottom: 8px;">
+                    [ RUN: ${cleanTitle} ]
                 </span>
-                <strong style="display: block; color: #ffffff; font-family: 'Courier New', Courier, monospace; font-size: 18px; font-weight: 900; line-height: 1.2; text-shadow: 0 0 5px rgba(255,255,255,0.2);">
+                <strong style="display: block; color: #ffffff; font-family: 'Courier New', Courier, monospace; font-size: 17px; font-weight: 800; line-height: 1.3;">
                     ${desc}
                 </strong>
             </div>
@@ -376,6 +379,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
