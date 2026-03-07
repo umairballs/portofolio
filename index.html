@@ -347,11 +347,11 @@
       const url = content.match(/medium_url: (.*)/)?.[1];
       const desc = content.match(/description: (.*)/)?.[1];
 
-// 1. CLEAN THE TEXT: Removes quotes that were messing up the look
+// 1. CLEAN THE TEXT: Kills any double quotes and fixes case
         const cleanTitle = title.replace(/['"]+/g, '').toUpperCase();
         const cleanDesc = desc.replace(/['"]+/g, '');
 
-        // 2. THE BOX: Uses your EXACT manual classes so the font MUST match
+        // 2. THE BOX: Uses your NATIVE CSS classes for 100% matching
         const box = `
             <div class="writeup-btn" onclick="window.open('${url}', '_blank')">
                 <span class="run-tag">
@@ -381,6 +381,7 @@ loadMediumLinks();
 </script>
 </body>
 </html>
+
 
 
 
