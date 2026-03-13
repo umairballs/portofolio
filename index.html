@@ -167,6 +167,11 @@
             <div class="profile-img"><img src="pfp.png" alt="GHOSTPORT PFP"></div>
             <h1 id="t-logo"></h1>
             <div id="t-sub" style="margin: 10px 0; min-height: 1.2em;"></div>
+            <div id="thm-stats" style="margin-top: 20px; padding: 10px; border: 1px dashed var(--accent); border-radius: 4px; background: rgba(88, 166, 255, 0.05);">
+    <span class="tag" style="margin-bottom: 5px;">[ SYSTEM_RANK ]</span>
+    <div id="thm-rank" style="font-size: 1.2em; font-weight: bold; color: #fff;">LOADING...</div>
+    <div id="thm-percent" style="font-size: 0.8em; color: var(--accent); margin-top: 5px; opacity: 0.8;">CONNECTING_TO_API...</div>
+</div>
             <div id="social-bar" class="socials" style="opacity:0; transition: opacity 1s;">
                 <a href="https://www.tiktok.com/@bigtoe123456" target="_blank"><i class="fab fa-tiktok"></i></a>
                 <a href="https://github.com/umairashik123" target="_blank"><i class="fab fa-github"></i></a>
@@ -324,15 +329,36 @@
             reminder.style.opacity = (y > h*2.8) ? "0" : "0.7";
         });
 
-        window.onload = async () => {
+      window.onload = async () => {
             resize(); animate();
             await typeEffect(document.getElementById('t-logo'), 'GHOSTPORT', 60);
             await typeEffect(document.getElementById('t-sub'), 'PENTESTER / SECURITY RESEARCHER/STUDENT', 60);
             document.getElementById('social-bar').style.opacity = "1";
             document.getElementById('contact-trigger').style.opacity = "1";
+            fetchTHMStats(); // Starts the live rank tracker
+            loadMediumLinks(); // Starts the writeup loader
         };
+
         window.onresize = resize;
-async function loadMediumLinks() {
+
+        async function fetchTHMStats() {
+            const username = 'ghostport'; 
+            try {
+                const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://tryhackme.com/api/v2/user/all-stats/${username}`)}`);
+                const data = await response.json();
+                const stats = JSON.parse(data.contents);
+
+                if (stats && stats.rank) {
+                    document.getElementById('thm-rank').innerText = `RANK: #${stats.rank.toLocaleString()}`;
+                    document.getElementById('thm-percent').innerText = `TOP: ${stats.percentile}% OF USERS`;
+                }
+            } catch (error) {
+                document.getElementById('thm-rank').innerText = "OFFLINE";
+                document.getElementById('thm-percent').innerText = "COULD_NOT_SYNC_STATS";
+            }
+        }
+
+        async function loadMediumLinks() {
             const container = document.querySelector('#writeups .grid-layout');
             const response = await fetch('https://api.github.com/repos/umairballs/portofolio/contents/writeups');
             const files = await response.json();
@@ -346,11 +372,9 @@ async function loadMediumLinks() {
                     const url = content.match(/medium_url: (.*)/)?.[1] || "#";
                     const desc = content.match(/description: (.*)/)?.[1] || "";
 
-                    // 1. CLEAN THE TEXT: Remove quotes and force uppercase
                     const cleanTitle = title.replace(/['"]+/g, '').toUpperCase();
                     const cleanDesc = desc.replace(/['"]+/g, '');
 
-                    // 2. THE CLONE: Matches your manual design settings 100%
                     const box = `
                         <a href="${url}" target="_blank" class="item-card writeup-btn" style="text-decoration: none; display: flex; flex-direction: column; justify-content: center; min-height: 110px;">
                             <span class="tag">[ RUN: ${cleanTitle} ]</span>
@@ -363,8 +387,8 @@ async function loadMediumLinks() {
                 }
             }
         }
-        loadMediumLinks();
     </script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on("init", user => {
@@ -378,10 +402,6 @@ async function loadMediumLinks() {
     </script>
 </body>
 </html>
-
-
-
-
 
 
 
